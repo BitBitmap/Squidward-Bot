@@ -1,0 +1,15 @@
+{
+  "name": "SquidwardBot",
+  "version": "1.0.0",
+  "description": "Splatoon bot for Discord",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "dependencies": {
+    "discord.js": "*",
+    "moment": "^2.14.1",
+    "request": "*",
+    "async": "*"
+  }
+}
