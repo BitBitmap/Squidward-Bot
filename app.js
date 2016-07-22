@@ -25,7 +25,9 @@ function display_rotation(message, order, callback) {
         else if (order === "1")
             time = '==== Next Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
         else if (order === "2")
-            time = '==== Last Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
+            if (schedule_json.schedule[order]) {
+                time = '==== Last Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
+            }
 
         if (error) {
             mybot.sendMessage(message.channel, "Oh snap, I can't retrieve the schedule.");
@@ -37,7 +39,9 @@ function display_rotation(message, order, callback) {
                 if (typeof(callback) == "function")
                     callback(null, message);
             } else {
-                mybot.sendMessage(message.channel, time + '**Turf War:** ' + schedule_json.schedule[order].regular.maps["0"].nameEN + ', ' + schedule_json.schedule[order].regular.maps["1"].nameEN + '\n' + '**Ranked [' + schedule_json.schedule[order].ranked.rulesEN + ']:** ' + schedule_json.schedule[order].ranked.maps["0"].nameEN + ', ' + schedule_json.schedule[order].ranked.maps["1"].nameEN);
+                if (schedule_json.schedule[order]) {
+                    mybot.sendMessage(message.channel, time + '**Turf War:** ' + schedule_json.schedule[order].regular.maps["0"].nameEN + ', ' + schedule_json.schedule[order].regular.maps["1"].nameEN + '\n' + '**Ranked [' + schedule_json.schedule[order].ranked.rulesEN + ']:** ' + schedule_json.schedule[order].ranked.maps["0"].nameEN + ', ' + schedule_json.schedule[order].ranked.maps["1"].nameEN);
+                }
                 if (typeof(callback) == "function")
                     callback(null, message);
             }
