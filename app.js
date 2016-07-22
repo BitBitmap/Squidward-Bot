@@ -21,9 +21,13 @@ function display_rotation(message, order, callback) {
 
     schedule(function(error, schedule_json){
         if (order === "0")
-            time = '==== Now ends ' + moment(schedule_json.schedule[order].endTime).fromNow() + ' ====\n';
+            if (schedule_json.schedule[order]) {
+                time = '==== Now ends ' + moment(schedule_json.schedule[order].endTime).fromNow() + ' ====\n';
+            }
         else if (order === "1")
-            time = '==== Next Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
+            if (schedule_json.schedule[order]) {
+                time = '==== Next Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
+            }
         else if (order === "2")
             if (schedule_json.schedule[order]) {
                 time = '==== Last Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
