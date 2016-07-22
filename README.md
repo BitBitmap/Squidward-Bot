@@ -9,3 +9,8 @@ Discord Bot that displays Splatoon map rotations
 `!r all` shows all map rotations.
 
 Use your discord API key to login where it mentioned `"YOUR KEY"`.
+
+```
+npm install
+node app.js
+```
