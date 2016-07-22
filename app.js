@@ -38,7 +38,7 @@ function display_rotation(message, order, callback) {
             if (typeof(callback) == "function")
                 callback(null, message);
         } else{
-            if (schedule_json.festival === true){
+            if (schedule_json.splatfest === true){
                 mybot.sendMessage(message.channel, "Splatfest ongoing. Please use `!r fes` instead.");
                 if (typeof(callback) == "function")
                     callback(null, message);
@@ -63,7 +63,7 @@ function display_festival(message) {
             if (schedule_json.splatfest === false){
                 mybot.sendMessage(message.channel, "No Splatfest right now. Please us `!r now`, `!r next`, `!r last` or `!r all` instead.")
             } else {
-                mybot.sendMessage(message.channel, '==== Splatfest ====\n' + schedule_json.schedule[0]["team_alpha_name"] + ' **vs** ' + schedule_json.schedule[0]["team_bravo_name"] + '\n' + '**Ends ** ' + moment(schedule_json.schedule[order].endTime).fromNow() + '\n' + '**Maps :** ' + schedule_json.schedule[0].regular.maps[0].nameEN + ', ' + schedule_json.schedule[0].regular.maps[1].nameEN + ', ' + schedule_json.schedule[0].regular.maps[2].nameEN + '\n\nHappy Splatfest! And may the odds be ever in your favor!')
+                mybot.sendMessage(message.channel, '==== Splatfest ====\n' + schedule_json.schedule[0].regular.teams[0] + ' **vs** ' + schedule_json.schedule[0].regular.teams[1] + '\n' + '**Ends ** ' + moment(schedule_json.schedule[0].endTime).fromNow() + '\n' + '**Maps :** ' + schedule_json.schedule[0].regular.maps[0].nameEN + ', ' + schedule_json.schedule[0].regular.maps[1].nameEN + ', ' + schedule_json.schedule[0].regular.maps[2].nameEN + '\n\nHappy Splatfest! And may the odds be ever in your favor!')
             }
         }
     })
