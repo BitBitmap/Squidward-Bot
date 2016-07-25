@@ -20,18 +20,21 @@ function display_rotation(message, order, callback) {
     var time;
 
     schedule(function(error, schedule_json){
-        if (order === "0")
+        if (order === 0) {
             if (schedule_json.schedule[order]) {
                 time = '==== Now ends ' + moment(schedule_json.schedule[order].endTime).fromNow() + ' ====\n';
             }
-        else if (order === "1")
+        }
+        else if (order === 1) {
             if (schedule_json.schedule[order]) {
                 time = '==== Next Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
             }
-        else if (order === "2")
+        }
+        else if (order === 2) {
             if (schedule_json.schedule[order]) {
                 time = '==== Last Rotation ' + moment(schedule_json.schedule[order].startTime).fromNow() + ' ====\n';
             }
+        }
 
         if (error) {
             mybot.sendMessage(message.channel, "Oh snap, I can't retrieve the schedule.");
@@ -85,19 +88,19 @@ mybot.on("message", function(message) {
     else if (message.content === "!r help")
         display_commands(message);
     else if (message.content === "!r now")
-        display_rotation(message, "0");
+        display_rotation(message, 0);
     else if (message.content === "!r next")
-        display_rotation(message, "1");
+        display_rotation(message, 1);
     else if (message.content === "!r last")
-        display_rotation(message, "2");
+        display_rotation(message, 2);
     else if (message.content === "!r fes")
         display_festival(message);
     else if (message.content === "!r all") {
         async.waterfall([
             function(callback) { callback(null, message); },
-            function(message, callback){ display_rotation(message, "0", callback) },
-            function(message, callback){ display_rotation(message, "1", callback) },
-            function(message, callback){ display_rotation(message, "2", callback) }
+            function(message, callback){ display_rotation(message, 0, callback) },
+            function(message, callback){ display_rotation(message, 1, callback) },
+            function(message, callback){ display_rotation(message, 2, callback) }
         ]);
     }
 });
