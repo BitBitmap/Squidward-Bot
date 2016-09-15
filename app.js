@@ -37,17 +37,17 @@ function display_rotation(message, order, callback) {
         }
 
         if (error) {
-            mybot.sendMessage(message.channel, "Oh snap, I can't retrieve the schedule.");
+            message.channel.sendMessage("Oh snap, I can't retrieve the schedule.");
             if (typeof(callback) == "function")
                 callback(null, message);
         } else{
             if (schedule_json.splatfest === true){
-                mybot.sendMessage(message.channel, "Splatfest ongoing. Please use `!r fes` instead.");
+                message.channel.sendMessage("Splatfest ongoing. Please use `!r fes` instead.");
                 if (typeof(callback) == "function")
                     callback(null, message);
             } else {
                 if (schedule_json.schedule[order]) {
-                    mybot.sendMessage(message.channel, time + '**Turf War:** ' + schedule_json.schedule[order].regular.maps["0"].nameEN + ', ' + schedule_json.schedule[order].regular.maps["1"].nameEN + '\n' + '**Ranked [' + schedule_json.schedule[order].ranked.rulesEN + ']:** ' + schedule_json.schedule[order].ranked.maps["0"].nameEN + ', ' + schedule_json.schedule[order].ranked.maps["1"].nameEN);
+                    message.channel.sendMessage(time + '**Turf War:** ' + schedule_json.schedule[order].regular.maps["0"].nameEN + ', ' + schedule_json.schedule[order].regular.maps["1"].nameEN + '\n' + '**Ranked [' + schedule_json.schedule[order].ranked.rulesEN + ']:** ' + schedule_json.schedule[order].ranked.maps["0"].nameEN + ', ' + schedule_json.schedule[order].ranked.maps["1"].nameEN);
                 }
                 if (typeof(callback) == "function")
                     callback(null, message);
@@ -60,13 +60,13 @@ function display_rotation(message, order, callback) {
 function display_festival(message) {
     schedule(function(error, schedule_json){
         if (error) {
-            mybot.sendMessage(message.channel, "Oh snap, I can't retrieve the schedule.");
+            message.channel.sendMessage("Oh snap, I can't retrieve the schedule.");
             callback(null, message);
         } else {
             if (schedule_json.splatfest === false){
-                mybot.sendMessage(message.channel, "No Splatfest right now. Please us `!r now`, `!r next`, `!r last` or `!r all` instead.")
+                message.channel.sendMessage("No Splatfest right now. Please us `!r now`, `!r next`, `!r last` or `!r all` instead.")
             } else {
-                mybot.sendMessage(message.channel, '==== Splatfest ====\n' + schedule_json.schedule[0].regular.teams[0] + ' **vs** ' + schedule_json.schedule[0].regular.teams[1] + '\n' + '**Ends ** ' + moment(schedule_json.schedule[0].endTime).fromNow() + '\n' + '**Maps :** ' + schedule_json.schedule[0].regular.maps[0].nameEN + ', ' + schedule_json.schedule[0].regular.maps[1].nameEN + ', ' + schedule_json.schedule[0].regular.maps[2].nameEN + '\n\nHappy Splatfest! And may the odds be ever in your favor!')
+                message.channel.sendMessage('==== Splatfest ====\n' + schedule_json.schedule[0].regular.teams[0] + ' **vs** ' + schedule_json.schedule[0].regular.teams[1] + '\n' + '**Ends ** ' + moment(schedule_json.schedule[0].endTime).fromNow() + '\n' + '**Maps :** ' + schedule_json.schedule[0].regular.maps[0].nameEN + ', ' + schedule_json.schedule[0].regular.maps[1].nameEN + ', ' + schedule_json.schedule[0].regular.maps[2].nameEN + '\n\nHappy Splatfest! And may the odds be ever in your favor!')
             }
         }
     })
@@ -74,12 +74,12 @@ function display_festival(message) {
 
 //Bot help menu
 function display_helper(message) {
-    mybot.sendMessage(message.channel, "Use `!r help` to list all the available commands");
+    message.channel.sendMessage("Use `!r help` to list all the available commands");
 }
 
 //Displays bot commands
 function display_commands(message) {
-    mybot.sendMessage(message.channel, "List of commands for the Splat Rotations bot:\n\n- `!r help` : You're using it\n- `!r now` : Displays the current rotation\n- `!r next` : Displays the next rotation\n- `!r last` : Displays the last rotaton\n- `!r all` : Displays all rotations\n- `!r fes` : Displays current Splatfest infos\n\nくコ:彡 ***Stay Fresh***")
+    message.channel.sendMessage("List of commands for the Splat Rotations bot:\n\n- `!r help` : You're using it\n- `!r now` : Displays the current rotation\n- `!r next` : Displays the next rotation\n- `!r last` : Displays the last rotaton\n- `!r all` : Displays all rotations\n- `!r fes` : Displays current Splatfest infos\n\nくコ:彡 ***Stay Fresh***")
 }
 
 mybot.on("message", function(message) {
@@ -105,5 +105,5 @@ mybot.on("message", function(message) {
     }
 });
 
-mybot.loginWithToken("YOUR KEY");
+mybot.login("nZciOVApusEk8JxXrnPbNKQB6lxNvsgd");
 // If you still need to login with email and password, use mybot.login("email", "password");
