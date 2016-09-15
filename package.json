@@ -7,9 +7,9 @@
     "test": "node app.js"
   },
   "dependencies": {
-    "discord.js": "*",
-    "moment": "^2.14.1",
-    "request": "*",
-    "async": "*"
+    "async": "^2.0.1",
+    "discord.js": "^9.2.0",
+    "moment": "^2.15.0",
+    "request": "^2.74.0"
   }
 }
